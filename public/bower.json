@@ -1,0 +1,9 @@
+{
+  "name": "MVC Marionette",
+  "private": true,
+  "version": "0.0.1",
+  "dependencies": {
+    "backbone.marionette": "*",
+    "jquery": "~1.10.2"
+  }
+}
