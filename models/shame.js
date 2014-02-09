@@ -13,9 +13,9 @@ function Shame(){
 Shame.prototype.init = function() {
   var self = this;
   Db.connect(format("mongodb://%s:%s/shmly?w=1", db_host , Connection.DEFAULT_PORT),function(err,db){
-  	if(err){
-  		console.log('ERROR CONNECTING TO DATABASE');
-  	}
+    if(err){
+      console.log('ERROR CONNECTING TO DATABASE');
+    }
     self.db = db;
     self.ready = true;
   });
@@ -23,7 +23,10 @@ Shame.prototype.init = function() {
 
 Shame.prototype.getTweet = function(cb){
   var col = this.db.collection('tweets');
-  col.find({},{limit:10, sort: {_id:-1}}, cb);
+  var cursor = col.find({}).sort({_id:-1}).limit(8);
+  cursor.toArray(function(err, result){
+    cb(err, result);
+  });
 };
 
 module.exports = new Shame();

@@ -108,6 +108,7 @@ body{
     filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.myBackground.jpg', sizingMethod='scale');
     -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='myBackground.jpg', sizingMethod='scale')";
     height: 100%;
+    color:#282828;
 }
 
 a .logo{
@@ -157,12 +158,70 @@ a .logo{
 .jombo h2{
     font-size:49px;
     font-weight: bold;
-    width: 440px;
+    width: 400px;
+}
+
+.shame{
+    text-align: center;
+}
+
+.shame .title{
+    position: relative;
+    font-size: 31px;
+    font-weight: bold;
+    background: transparent url(/public/img/ribbon.png) center no-repeat;
+    padding-top: 10px;
+    height: 80px;
 }
 
 .jombo p{
     text-transform: uppercase;
     font-weight: 300;
+    font-size: 16px;
+}
+
+.tweet{
+    background: #fafafa;
+    display: inline-block;
+    width: 250px;
+    height: 300px;
+    padding: 10px 20px;
+    margin: 10px;
+    color:#282828;
+    order-radius: 5px;
+    -webkit-border-radius : 5px;
+    -moz-border-radius : 5px;
+    vertical-align: top;
+}
+
+.tweet .victime{
+    display: inline-block;
+    margin-right: solid 1px #ddd;
+}
+
+.tweet .victime img{
+    order-radius: 50%;
+    -webkit-border-radius : 50%;
+    -moz-border-radius : 50%;
+}
+
+.tweet p{
+    text-transform: none;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+.shame-score{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.shame-score p, .victime p{
+    font-weight: bold;
+}
+
+.tweet .shame-score{
+    margin-left: 20px;
 }
 
 .feature, .cta-bottom{
@@ -171,7 +230,12 @@ a .logo{
 }
 
 footer{
-    background: white;
+    background: #3d3d3d;
+    height: 80px;
+    text-transform:uppercase;
+    text-align: center;
+    color: white;
+    padding-top: 20px; 
 }
 
 

@@ -15,6 +15,7 @@ var TweetCollection = Backbone.Collection.extend({
 var TweetController = Marionette.Controller.extend({
   initialize: function(options){
     this.collection = new TweetCollection();
+    this.collection.fetch();
     setInterval( function() {
         this.collection.fetch();
     }.bind(this),10000);

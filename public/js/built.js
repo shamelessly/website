@@ -8,12 +8,11 @@ var MainApp = new Backbone.Marionette.Application();
 
 // Modules
 MainApp.module('Entities', require('./entities'));
-// MainApp.module('Contacts', require('./modules/contacts'));
 MainApp.module('Tweet', require('./modules/tweet'));
 
 
 MainApp.addRegions({
-  mainRegion: "#shame-containers"
+  mainRegion: ".shame-container"
 });
 
 MainApp.on('initialize:after', function(){
@@ -23,7 +22,7 @@ MainApp.on('initialize:after', function(){
 MainApp.start();
 
 module.exports = MainApp;
-},{"./entities":2,"./modules/tweet":5,"backbone":"mkqU89","backbone.marionette":"9V/2Rv","jquery":"UzfY20","underscore":"+D0ftc"}],2:[function(require,module,exports){
+},{"./entities":2,"./modules/tweet":5,"backbone":"7iscrP","backbone.marionette":"YvRmr+","jquery":"3MdL15","underscore":"PLQesu"}],2:[function(require,module,exports){
 var tweet = require('./tweet');
 
 function EntitiesModule(Entities, App, Backbone, Marionette, $, _){
@@ -55,6 +54,7 @@ var TweetCollection = Backbone.Collection.extend({
 var TweetController = Marionette.Controller.extend({
   initialize: function(options){
     this.collection = new TweetCollection();
+    this.collection.fetch();
     setInterval( function() {
         this.collection.fetch();
     }.bind(this),10000);
@@ -70,7 +70,7 @@ module.exports = {
   TweetCollection : TweetCollection,
   TweetController : TweetController
 };
-},{"backbone":"mkqU89","backbone.marionette":"9V/2Rv"}],4:[function(require,module,exports){
+},{"backbone":"7iscrP","backbone.marionette":"YvRmr+"}],4:[function(require,module,exports){
 var views = require('../view');
 var _ = require('underscore');
 var Backbone = require('backbone');
@@ -90,7 +90,7 @@ Controller.prototype.displayTweets = function() {
 };
 
 module.exports = Controller;
-},{"../view":6,"backbone":"mkqU89","backbone.marionette":"9V/2Rv","underscore":"+D0ftc"}],5:[function(require,module,exports){
+},{"../view":6,"backbone":"7iscrP","backbone.marionette":"YvRmr+","underscore":"PLQesu"}],5:[function(require,module,exports){
 var Controller = require('./controller');
 
 function TweetModule(module, app, backbone, Marionette, $, _){
@@ -121,6 +121,7 @@ var Marionette = require('backbone.marionette');
 
 var TweetView = Backbone.Marionette.ItemView.extend({
   tagName : 'div',
+  className: 'tweet',
   template: "#tweet-template",
 
   initialize: function(){
@@ -132,13 +133,17 @@ var TweetView = Backbone.Marionette.ItemView.extend({
 var TweetCollectionView = Backbone.Marionette.CollectionView.extend({
   tagName : 'div',
   itemView : TweetView,
+  initialize: function(){
+    // bind the model change to rerender this view
+    this.collection.on('change', this.render, this);
+  },
 });
 
 module.exports = {
   TweetView : TweetView,
   TweetCollectionView : TweetCollectionView
 };
-},{"backbone":"mkqU89","backbone.marionette":"9V/2Rv"}],"QHwCN2":[function(require,module,exports){
+},{"backbone":"7iscrP","backbone.marionette":"YvRmr+"}],"pHEBIN":[function(require,module,exports){
 (function (global){(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 
 ; global.Backbone = require("backbone");
@@ -157,11 +162,11 @@ Backbone.ChildViewContainer=function(i,t){var e=function(i){this._views={},this.
 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"backbone":"mkqU89"}],"backbone.babysitter":[function(require,module,exports){
-module.exports=require('QHwCN2');
+},{"backbone":"7iscrP"}],"backbone.babysitter":[function(require,module,exports){
+module.exports=require('pHEBIN');
 },{}],"backbone.marionette":[function(require,module,exports){
-module.exports=require('9V/2Rv');
-},{}],"9V/2Rv":[function(require,module,exports){
+module.exports=require('YvRmr+');
+},{}],"YvRmr+":[function(require,module,exports){
 (function (global){(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 
 ; global.$ = require("jquery");
@@ -192,7 +197,7 @@ Backbone.ChildViewContainer=function(a,b){var c=function(a){this._views={},this.
 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"backbone":"mkqU89","jquery":"UzfY20","underscore":"+D0ftc"}],"dHrg1f":[function(require,module,exports){
+},{"backbone":"7iscrP","jquery":"3MdL15","underscore":"PLQesu"}],"DjJbph":[function(require,module,exports){
 (function (global){(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 
 ; global.Backbone = require("backbone");
@@ -212,11 +217,11 @@ Backbone.Wreqr=function(t,n,e){"use strict";var r={};return r.Handlers=function(
 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"backbone":"mkqU89"}],"backbone.wreqr":[function(require,module,exports){
-module.exports=require('dHrg1f');
+},{"backbone":"7iscrP"}],"backbone.wreqr":[function(require,module,exports){
+module.exports=require('DjJbph');
 },{}],"backbone":[function(require,module,exports){
-module.exports=require('mkqU89');
-},{}],"mkqU89":[function(require,module,exports){
+module.exports=require('7iscrP');
+},{}],"7iscrP":[function(require,module,exports){
 (function (global){(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 
 ; global.underscore = require("underscore");
@@ -226,9 +231,9 @@ module.exports=require('mkqU89');
 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"underscore":"+D0ftc"}],"jquery":[function(require,module,exports){
-module.exports=require('UzfY20');
-},{}],"UzfY20":[function(require,module,exports){
+},{"underscore":"PLQesu"}],"jquery":[function(require,module,exports){
+module.exports=require('3MdL15');
+},{}],"3MdL15":[function(require,module,exports){
 (function (global){(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 /*! jQuery v1.10.2 | (c) 2005, 2013 jQuery Foundation, Inc. | jquery.org/license
 //@ sourceMappingURL=jquery.min.map
@@ -242,8 +247,8 @@ u[o]&&(delete u[o],c?delete n[l]:typeof n.removeAttribute!==i?n.removeAttribute(
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],"underscore":[function(require,module,exports){
-module.exports=require('+D0ftc');
-},{}],"+D0ftc":[function(require,module,exports){
+module.exports=require('PLQesu');
+},{}],"PLQesu":[function(require,module,exports){
 (function (global){(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 //     Underscore.js 1.5.2
 //     http://underscorejs.org
