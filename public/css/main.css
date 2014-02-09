@@ -505,7 +505,7 @@ footer{
 
 @media only screen and (max-device-width: 480px) {
     .jombo h2{
-        font-size: 36px;
+        font-size: 30px;
     }
 
     .row-top .signup{
