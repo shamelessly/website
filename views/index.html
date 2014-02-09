@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="/public/css/bootstrap.min.css">
         <link rel="stylesheet" href="/public/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="/public/css/main.css">
+
         <script src="/public/js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body class="">
@@ -27,8 +28,8 @@
                         <a href="http://shamelessly.co">
                             <h1 class="logo">Shamelessly.co</h1>
                         </a>
-                        <div class="signup">
-                            <a href="#" alt="sign up">Sign up</a>
+                        <div class="signup" data-toggle="modal" data-target="#signup-modal">
+                            <a href="#" alt="sign up" >Sign up</a>
                         </div>
                     </div>
                     <section class="jombo">
@@ -42,6 +43,24 @@
 
                 </div>
             </section>
+
+
+            <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="Sign up" aria-hidden="true">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                        <div id="mc_embed_signup">
+                        <form action="http://shamelessly.us3.list-manage.com/subscribe/post?u=05d89d6991852c5d2ffc4eed7&amp;id=ed97a1a090" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                            <label for="mce-EMAIL">Subscribe to our mailing list</label>
+                            <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+                            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                            <div style="position: absolute; left: -5000px;"><input type="text" name="b_05d89d6991852c5d2ffc4eed7_ed97a1a090" value=""></div>
+                            <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                        </form>
+                        </div>
+                </div>
+              </div>
+            </div>
+
 
             <div class="row">
                 <div class="col-md-12">
