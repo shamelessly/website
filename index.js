@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var cons = require('consolidate');
 var api = require('./routes/api.js');
+var shame = require('./models/shame');
 
 // init view helpers
 require('./helpers/view');
@@ -15,7 +16,7 @@ app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 
 app.use(app.router);
-app.get('/api/contact', api.getDummy);
+app.get('/api/tweets', api.getTweet);
 app.get('/',require('./routes/index.js'));
 
 app.use(function (err, req, res, next) {
@@ -30,6 +31,12 @@ app.use(function (req, res, next) {
   res.send(404, 'Page not found');
 });
 
+function start(){
+	if(!shame.ready){
+		return setTimeout(start, 100);
+	}
+	app.listen(3000);
+	console.log('Listening on port 3000');	
+}
 
-app.listen(3000);
-console.log('Listening on port 3000');
+start();

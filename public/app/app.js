@@ -7,11 +7,12 @@ var MainApp = new Backbone.Marionette.Application();
 
 // Modules
 MainApp.module('Entities', require('./entities'));
-MainApp.module('Contacts', require('./modules/contacts'));
+// MainApp.module('Contacts', require('./modules/contacts'));
+MainApp.module('Tweet', require('./modules/tweet'));
 
 
 MainApp.addRegions({
-  mainRegion: "#container"
+  mainRegion: "#shame-containers"
 });
 
 MainApp.on('initialize:after', function(){

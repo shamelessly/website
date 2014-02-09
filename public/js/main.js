@@ -3,7 +3,7 @@ $(document).ready(function(){
 	resize();
 });
 
-$(document).on('resize', resize)
+$(window).on('resize', resize)
 
 function resize(){
 	var height = $(window).height();

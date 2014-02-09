@@ -1,9 +1,11 @@
-data = require('../data/dummy');
+var shame = require('../models/shame');
 
-function getDummy(req, res, next){
-  res.json(data);
+function getTweet(req, res, next){
+	shame.getTweet(function(err, result){
+		res.json(result);
+	});
 }
 
 module.exports = {
-	getDummy : getDummy
+	getTweet : getTweet
 };

@@ -1,14 +1,11 @@
-var contact = require('./contact');
+var tweet = require('./tweet');
 
 function EntitiesModule(Entities, App, Backbone, Marionette, $, _){
 
-  var contactController = new contact.ContactController();
+  var tweetController = new tweet.TweetController();
 
-  App.reqres.setHandler('contact:entities', function(){
-    return contactController.getContacts();
-  });
-  App.reqres.setHandler('contact:new', function(name){
-    return contactController.addContact(name);
+  App.reqres.setHandler('tweet:entities', function(){
+    return tweetController.getTweets();
   });
 
 }

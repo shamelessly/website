@@ -1,13 +1,13 @@
-var Controller = require('./controllers');
+var Controller = require('./controller');
 
-function ContactModule(module, app, backbone, Marionette, $, _){
+function TweetModule(module, app, backbone, Marionette, $, _){
   module.on("before:start", function(){
-    console.log('Contact module will start');
+    console.log('Tweet module will start');
   });
 
   module.Router = Marionette.AppRouter.extend({
     appRoutes: {
-      "": "displayContact"
+      "": "displayTweets"
     }
   });
 
@@ -21,4 +21,4 @@ function ContactModule(module, app, backbone, Marionette, $, _){
   });
 }
 
-module.exports = ContactModule;
+module.exports = TweetModule;

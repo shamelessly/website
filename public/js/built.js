@@ -8,11 +8,12 @@ var MainApp = new Backbone.Marionette.Application();
 
 // Modules
 MainApp.module('Entities', require('./entities'));
-MainApp.module('Contacts', require('./modules/contacts'));
+// MainApp.module('Contacts', require('./modules/contacts'));
+MainApp.module('Tweet', require('./modules/tweet'));
 
 
 MainApp.addRegions({
-  mainRegion: "#container"
+  mainRegion: "#shame-containers"
 });
 
 MainApp.on('initialize:after', function(){
@@ -22,90 +23,55 @@ MainApp.on('initialize:after', function(){
 MainApp.start();
 
 module.exports = MainApp;
-},{"./entities":3,"./modules/contacts":6,"backbone":"mkqU89","backbone.marionette":"9V/2Rv","jquery":"UzfY20","underscore":"+D0ftc"}],2:[function(require,module,exports){
-var Backbone = require('backbone');
-var Marionette = require('backbone.marionette');
-
-// Model and Collection definition
-var ContactModel = Backbone.Model.extend({
-  idAttribute: "_id",
-  // Default attributes
-  defaults: {
-    _id : 1,
-    name : 'New Contact'
-  },
-
-  // A dummy initialization method
-  initialize: function() {
-    this.on('change', function(){
-      console.log('ContactModel - Values for this model have changed.');
-    });
-  }
-});
-
-var ContactCollection = Backbone.Collection.extend({
-  model: ContactModel,
-  url : '/api/contact'
-});
-
-// Controller Definition
-var ContactController = Marionette.Controller.extend({
-  initialize: function(options){
-    this.collection = new ContactCollection();
-    
-    setTimeout( function() {
-        this.collection.fetch();
-        console.log('fetching');
-    },
-      1000);
-  },
-
-  getContacts : function(){
-    return this.collection;
-  },
-
-  addContact : function(name){
-    var contact = new ContactModel({name:name});
-    this.collection.add(contact);
-    return contact;
-  }
-});
-
-module.exports = {
-  ContactModel : ContactModel,
-  ContactCollection : ContactCollection,
-  ContactController : ContactController
-};
-},{"backbone":"mkqU89","backbone.marionette":"9V/2Rv"}],3:[function(require,module,exports){
-var contact = require('./contact');
+},{"./entities":2,"./modules/tweet":5,"backbone":"mkqU89","backbone.marionette":"9V/2Rv","jquery":"UzfY20","underscore":"+D0ftc"}],2:[function(require,module,exports){
+var tweet = require('./tweet');
 
 function EntitiesModule(Entities, App, Backbone, Marionette, $, _){
 
-  var contactController = new contact.ContactController();
+  var tweetController = new tweet.TweetController();
 
-  App.reqres.setHandler('contact:entities', function(){
-    return contactController.getContacts();
-  });
-  App.reqres.setHandler('contact:new', function(name){
-    return contactController.addContact(name);
+  App.reqres.setHandler('tweet:entities', function(){
+    return tweetController.getTweets();
   });
 
 }
 
 module.exports = EntitiesModule;
-},{"./contact":2}],4:[function(require,module,exports){
-var views = require('../view');
+},{"./tweet":3}],3:[function(require,module,exports){
+var Backbone = require('backbone');
+var Marionette = require('backbone.marionette');
 
-function displayContact(){
-  var contacts = this.app.request("contact:entities");
-  var view = new views.contact.ContactsView({collection:contacts});
-  this.region.show(view);
-}
+// Model and Collection definition
+var TweetModel = Backbone.Model.extend({
+  idAttribute: "_id"
+});
+
+var TweetCollection = Backbone.Collection.extend({
+  model: TweetModel,
+  url : '/api/tweets'
+});
+
+// Controller Definition
+var TweetController = Marionette.Controller.extend({
+  initialize: function(options){
+    this.collection = new TweetCollection();
+    setInterval( function() {
+        this.collection.fetch();
+    }.bind(this),10000);
+  },
+
+  getTweets : function(){
+    return this.collection;
+  }
+});
 
 module.exports = {
-  displayContact: displayContact
+  TweetModel : TweetModel,
+  TweetCollection : TweetCollection,
+  TweetController : TweetController
 };
-},{"../view":8}],5:[function(require,module,exports){
+},{"backbone":"mkqU89","backbone.marionette":"9V/2Rv"}],4:[function(require,module,exports){
+var views = require('../view');
 var _ = require('underscore');
 var Backbone = require('backbone');
 var Marionette = require('backbone.marionette');
@@ -117,20 +83,24 @@ var Controller = Marionette.Controller.extend({
   }
 });
 
-_.extend(Controller.prototype, require('./contact'));
+Controller.prototype.displayTweets = function() {
+	var tweets = this.app.request("tweet:entities");
+  var view = new views.TweetCollectionView({collection:tweets});
+  this.region.show(view);
+};
 
 module.exports = Controller;
-},{"./contact":4,"backbone":"mkqU89","backbone.marionette":"9V/2Rv","underscore":"+D0ftc"}],6:[function(require,module,exports){
-var Controller = require('./controllers');
+},{"../view":6,"backbone":"mkqU89","backbone.marionette":"9V/2Rv","underscore":"+D0ftc"}],5:[function(require,module,exports){
+var Controller = require('./controller');
 
-function ContactModule(module, app, backbone, Marionette, $, _){
+function TweetModule(module, app, backbone, Marionette, $, _){
   module.on("before:start", function(){
-    console.log('Contact module will start');
+    console.log('Tweet module will start');
   });
 
   module.Router = Marionette.AppRouter.extend({
     appRoutes: {
-      "": "displayContact"
+      "": "displayTweets"
     }
   });
 
@@ -144,14 +114,14 @@ function ContactModule(module, app, backbone, Marionette, $, _){
   });
 }
 
-module.exports = ContactModule;
-},{"./controllers":5}],7:[function(require,module,exports){
+module.exports = TweetModule;
+},{"./controller":4}],6:[function(require,module,exports){
 var Backbone = require('backbone');
 var Marionette = require('backbone.marionette');
 
-var ContactView = Backbone.Marionette.ItemView.extend({
-  tagName : 'li',
-  template: "#tpl-contact",
+var TweetView = Backbone.Marionette.ItemView.extend({
+  tagName : 'div',
+  template: "#tweet-template",
 
   initialize: function(){
     // bind the model change to rerender this view
@@ -159,20 +129,16 @@ var ContactView = Backbone.Marionette.ItemView.extend({
   },
 });
 
-var ContactsView = Backbone.Marionette.CollectionView.extend({
-  tagName : 'ul',
-  itemView : ContactView,
+var TweetCollectionView = Backbone.Marionette.CollectionView.extend({
+  tagName : 'div',
+  itemView : TweetView,
 });
 
 module.exports = {
-  ContactView : ContactView,
-  ContactsView : ContactsView
+  TweetView : TweetView,
+  TweetCollectionView : TweetCollectionView
 };
-},{"backbone":"mkqU89","backbone.marionette":"9V/2Rv"}],8:[function(require,module,exports){
-module.exports = {
-  contact : require('./contact')
-};
-},{"./contact":7}],"QHwCN2":[function(require,module,exports){
+},{"backbone":"mkqU89","backbone.marionette":"9V/2Rv"}],"QHwCN2":[function(require,module,exports){
 (function (global){(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 
 ; global.Backbone = require("backbone");
@@ -226,9 +192,7 @@ Backbone.ChildViewContainer=function(a,b){var c=function(a){this._views={},this.
 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"backbone":"mkqU89","jquery":"UzfY20","underscore":"+D0ftc"}],"backbone.wreqr":[function(require,module,exports){
-module.exports=require('dHrg1f');
-},{}],"dHrg1f":[function(require,module,exports){
+},{"backbone":"mkqU89","jquery":"UzfY20","underscore":"+D0ftc"}],"dHrg1f":[function(require,module,exports){
 (function (global){(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 
 ; global.Backbone = require("backbone");
@@ -248,7 +212,9 @@ Backbone.Wreqr=function(t,n,e){"use strict";var r={};return r.Handlers=function(
 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"backbone":"mkqU89"}],"backbone":[function(require,module,exports){
+},{"backbone":"mkqU89"}],"backbone.wreqr":[function(require,module,exports){
+module.exports=require('dHrg1f');
+},{}],"backbone":[function(require,module,exports){
 module.exports=require('mkqU89');
 },{}],"mkqU89":[function(require,module,exports){
 (function (global){(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
