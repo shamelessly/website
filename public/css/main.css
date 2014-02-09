@@ -1,4 +1,4 @@
-/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
+body/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
 
 /*
  * What follows is the result of much research on cross-browser styling.
@@ -291,4 +291,24 @@ textarea {
     h3 {
         page-break-after: avoid;
     }
+}
+
+
+body{
+    background: url(/public/img/bg.jpg) no-repeat center top fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.myBackground.jpg', sizingMethod='scale');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='myBackground.jpg', sizingMethod='scale')";
+}
+
+h1.logo{
+    background: transparent url(/public/img/logo.png) no-repeat;
+    display: block;
+    width: 140px;
+    height: 130px;
+    text-indent: -9999px;
+    white-space: nowrap;
 }

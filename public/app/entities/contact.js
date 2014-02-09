@@ -19,13 +19,20 @@ var ContactModel = Backbone.Model.extend({
 });
 
 var ContactCollection = Backbone.Collection.extend({
-  model: ContactModel
+  model: ContactModel,
+  url : '/api/contact'
 });
 
 // Controller Definition
 var ContactController = Marionette.Controller.extend({
   initialize: function(options){
-    this.collection = new ContactCollection([{name : 'Pierre'},{name : 'Paul'},{name : 'Jacques'}]);
+    this.collection = new ContactCollection();
+    
+    setTimeout( function() {
+        this.collection.fetch();
+        console.log('fetching');
+    },
+      1000);
   },
 
   getContacts : function(){

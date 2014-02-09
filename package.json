@@ -7,7 +7,8 @@
     "express": "3.x",
     "consolidate": "~0.9.1",
     "dustjs-linkedin": "~2.0.3",
-    "dustjs-helpers": "~1.1.1"
+    "dustjs-helpers": "~1.1.1",
+    "socket.io": "*"
   },
   "devDependencies": {
     "grunt-browserify": "*",

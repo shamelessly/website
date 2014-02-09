@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var cons = require('consolidate');
+var api = require('./routes/api.js');
 
 // init view helpers
 require('./helpers/view');
@@ -14,7 +15,8 @@ app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 
 app.use(app.router);
-app.all('*',require('./routes/index.js'));
+app.get('/api/contact', api.getDummy);
+app.get('/',require('./routes/index.js'));
 
 app.use(function (err, req, res, next) {
   if(!err){

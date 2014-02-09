@@ -10,19 +10,56 @@
         <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
 
         <link rel="stylesheet" href="/public/css/normalize.css">
-        <link rel="stylesheet" href="/public/css/main.css">
         <link rel="stylesheet" href="/public/css/bootstrap.min.css">
         <link rel="stylesheet" href="/public/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="/public/css/main.css">
         <script src="/public/js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
-    <body>
+    <body class="">
         <!--[if lt IE 8]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+        
 
-        <!-- Add your site or application content here -->
-        <h1>MVC Marionette</h1>
-        <div id="container"></div>
+        <section class="container-fluid">
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    
+                    <a href="http://shamelessly.co" alt="Shamelessly.co">
+                        <h1 class="logo">Shamelessly.co</h1>
+                    </a>
+                    <div class="signup"></div>
+
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <section class="jombo">
+                        <h2>Customer Support Sucks?</h2>
+                        <p>You #shout.</br>We get it public.</br>They have to fix it. Fast.</p>
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    <p class="section-title">Wall of shame<p>
+                    <div class="shame-container">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-offset-3 col-md-6">
+                    CTA
+                </div>
+            </div>
+        </section>
+
+
+        <footer></footer>
 
         <script id="tpl-contact" type="template">
           Contact <%= name %> has id <%= _id %>
