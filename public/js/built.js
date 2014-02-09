@@ -57,7 +57,7 @@ var TweetController = Marionette.Controller.extend({
     this.collection.fetch();
     setInterval( function() {
         this.collection.fetch();
-    }.bind(this),10000);
+    }.bind(this),1000);
   },
 
   getTweets : function(){
@@ -133,9 +133,8 @@ var TweetView = Backbone.Marionette.ItemView.extend({
 var TweetCollectionView = Backbone.Marionette.CollectionView.extend({
   tagName : 'div',
   itemView : TweetView,
-  initialize: function(){
-    // bind the model change to rerender this view
-    this.collection.on('change', this.render, this);
+  appendHtml: function(collectionView, itemView){
+    collectionView.$el.prepend(itemView.el);
   },
 });
 
@@ -164,8 +163,6 @@ Backbone.ChildViewContainer=function(i,t){var e=function(i){this._views={},this.
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"backbone":"7iscrP"}],"backbone.babysitter":[function(require,module,exports){
 module.exports=require('pHEBIN');
-},{}],"backbone.marionette":[function(require,module,exports){
-module.exports=require('YvRmr+');
 },{}],"YvRmr+":[function(require,module,exports){
 (function (global){(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 
@@ -197,7 +194,11 @@ Backbone.ChildViewContainer=function(a,b){var c=function(a){this._views={},this.
 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"backbone":"7iscrP","jquery":"3MdL15","underscore":"PLQesu"}],"DjJbph":[function(require,module,exports){
+},{"backbone":"7iscrP","jquery":"3MdL15","underscore":"PLQesu"}],"backbone.marionette":[function(require,module,exports){
+module.exports=require('YvRmr+');
+},{}],"backbone.wreqr":[function(require,module,exports){
+module.exports=require('DjJbph');
+},{}],"DjJbph":[function(require,module,exports){
 (function (global){(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {
 
 ; global.Backbone = require("backbone");
@@ -217,9 +218,7 @@ Backbone.Wreqr=function(t,n,e){"use strict";var r={};return r.Handlers=function(
 
 }).call(global, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"backbone":"7iscrP"}],"backbone.wreqr":[function(require,module,exports){
-module.exports=require('DjJbph');
-},{}],"backbone":[function(require,module,exports){
+},{"backbone":"7iscrP"}],"backbone":[function(require,module,exports){
 module.exports=require('7iscrP');
 },{}],"7iscrP":[function(require,module,exports){
 (function (global){(function browserifyShim(module, exports, define, browserify_shim__define__module__export__) {

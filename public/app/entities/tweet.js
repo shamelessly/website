@@ -18,7 +18,7 @@ var TweetController = Marionette.Controller.extend({
     this.collection.fetch();
     setInterval( function() {
         this.collection.fetch();
-    }.bind(this),10000);
+    }.bind(this),1000);
   },
 
   getTweets : function(){
