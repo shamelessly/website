@@ -1,4 +1,4 @@
-body/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
+/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
 
 /*
  * What follows is the result of much research on cross-browser styling.
@@ -9,7 +9,6 @@ body/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
-
 html,
 button,
 input,
@@ -21,6 +20,7 @@ textarea {
 html {
     font-size: 1em;
     line-height: 1.4;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 /*
@@ -99,7 +99,61 @@ textarea {
    ========================================================================== */
 
 
+body{
+    background: url(/public/img/bg.jpg) no-repeat center top fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.myBackground.jpg', sizingMethod='scale');
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='myBackground.jpg', sizingMethod='scale')";
+    height: 100%;
+}
 
+h1.logo{
+    background: transparent url(/public/img/logo.png) no-repeat;
+    display: block;
+    width: 140px;
+    height: 130px;
+    text-indent: -9999px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.row-top{
+    min-height: 100%; 
+    top: 0; 
+    right: 0; 
+    bottom: 0;
+}
+
+.jombo{
+    color:white;
+}
+
+.jombo h2{
+    font-size:49px;
+    font-weight: bold;
+}
+
+.jombo p{
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+.shame{
+    background: white;
+    min-height: 400px;
+}
+
+.feature, .cta-bottom{
+    background: white;
+    margin: 10px 0;
+}
+
+footer{
+    background: white;
+}
 
 
 
@@ -291,24 +345,4 @@ textarea {
     h3 {
         page-break-after: avoid;
     }
-}
-
-
-body{
-    background: url(/public/img/bg.jpg) no-repeat center top fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.myBackground.jpg', sizingMethod='scale');
-    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='myBackground.jpg', sizingMethod='scale')";
-}
-
-h1.logo{
-    background: transparent url(/public/img/logo.png) no-repeat;
-    display: block;
-    width: 140px;
-    height: 130px;
-    text-indent: -9999px;
-    white-space: nowrap;
 }
