@@ -134,11 +134,6 @@ a .logo{
 }
 
 .row-top{
-    min-height: 1130px; 
-    top: 0; 
-    right: 0; 
-    bottom: 0;
-    position: relative;
 }
 
 .signup{
@@ -504,6 +499,12 @@ footer{
     h2,
     h3 {
         page-break-after: avoid;
+    }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px){
+    #mc-cta input[name=EMAIL]{
+        width: 300px;
     }
 }
 

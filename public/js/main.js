@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-	setTimeout(resize, 800);
+	// setTimeout(resize, 800);
 });
 
 $(window).on('resize', resize)
