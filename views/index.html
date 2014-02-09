@@ -44,6 +44,13 @@
                 </div>
             </section>
 	
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="feature">
+                        
+                    </div>
+                </div>
+            </div>
           
             <!-- <div class="row">
 
@@ -68,7 +75,18 @@
 
             <div class="row">
                 <div class="col-md-12">
-                   
+                   <div class="cta">
+                    <h2>Sign up to get your voice heard</h2>
+                    <form action="http://shamelessly.us3.list-manage.com/subscribe/post?u=05d89d6991852c5d2ffc4eed7&amp;id=ed97a1a090" method="post" id="mc-cta" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                          <input type="email" value="" name="EMAIL" class="form-control email" id="mce-EMAIL" placeholder="email address" required></input>
+                         <input type="submit" value="Sign Up" name="subscribe" id="mc-embedded-subscribe" class="signup" style="display:inline-block;"/>
+                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                        <div style="position: absolute; left: -5000px;">
+                            <input type="text" name="b_05d89d6991852c5d2ffc4eed7_ed97a1a090" value="">
+                        </div>
+                        
+                    </form>
+                   </div>
                 </div>
             </div>
         </section>
@@ -81,7 +99,7 @@
                          <div class="input-group">
                           <input type="email" value="" name="EMAIL" class="form-control email" id="mce-EMAIL" placeholder="email address" required>
                           <span class="input-group-btn">
-                            <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn">
+                            <input type="submit" value="Sign Up" name="subscribe" id="mc-embedded-subscribe" class="btn">
                           </span>
                         </div><!-- /input-group -->
                         <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
@@ -101,11 +119,15 @@
 
 
         <script id="tweet-template" type="template">
-          <div class="victime">
-            <p>shouter</p>
-            <img src="<%= user.profile_image_url %>"/>
-          </div>
-          <p><%=text%></p>
+          <a href="https://twitter.com/intent/tweet?text=RT%20@<%=user.screen_name%>:%20<% print(encodeURIComponent(text))%>&amp;original_referer=http%3A%2F%2Fshamelessly.co&amp;tw_i=<%=id_str%>&amp;tw_p=tweetembed" class="retweet-action web-intent icon-rt" title="Retweet" data-scribe="element:retweet" data-tw-params="true"
+          target="_blank">
+              <div class="victime">
+                <img src="<%= user.profile_image_url %>"/>
+              </div>
+              <p><%=text%></p>
+              <div class="btn">Shout it</div>
+          </a>
+
         </script>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -114,6 +136,8 @@
         <script src="/public/js/plugins.js"></script>
         <script src="/public/js/main.js"></script>
         <script src="/public/js/built.js"></script>
+
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
