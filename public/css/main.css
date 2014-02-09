@@ -282,7 +282,11 @@ a .logo{
 
 .cta h2{
     color: white;
-    margin-bottom: 40px;
+}
+
+.cta h2 + p{
+    color:white;
+    text-transform: uppercase;
 }
 
 .cta #mc-cta input{
