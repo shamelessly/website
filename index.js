@@ -35,8 +35,8 @@ function start(){
 	if(!shame.ready){
 		return setTimeout(start, 100);
 	}
-	app.listen(3000);
-	console.log('Listening on port 3000');	
+	app.listen(8172);
+	console.log('Listening on port 8172');	
 }
 
 start();
