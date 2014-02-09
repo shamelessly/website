@@ -513,6 +513,10 @@ footer{
     }
 
     .cta{
-        padding:5px;
+        padding:20px;
+    }
+
+    .cta h2{
+        font-size: 30px;
     }
 }
